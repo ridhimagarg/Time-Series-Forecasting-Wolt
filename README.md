@@ -5,16 +5,17 @@
 ## Table of Contents
 
 1. [Data](#data)
-3. [Task - Predicting how many orders Wolt may get in next hour](#task)
-4. [Data Analysis and Modelling](#data-analysis-and-modelling)
-5. [Working with files](#working-with-files)
+2. [Task - Predicting how many orders Wolt may get in next hour](#task)
+3. [Data Analysis and Modelling](#data-analysis-and-modelling)
+4. [Modelling](#modelling-:rocket:)
+5. [Further Development](#further-development)
+6. [Working with files](#working-with-files)
 
 ----
 
 ## Data
 
 * **Time series.** I have choosen this dataset [provided file](orders_autumn_2020.csv) as a process fluctuating in time
-
 
 ---
 
@@ -32,32 +33,40 @@ For detail Analysis, go check this [notebook](Analysis.ipynb #Hourly).
 
 Here are same basic insights of data -:
 
-1. Hourly Analysis :hourglass:
+1. **Hourly Analysis** :hourglass:
 
 ![Hourly Analysis](images/hourlyanalysis.png)
 
-2. Weekly Analysis
+2. **Weekly Analysis**
 
 ![Weekly Analysis](images/weekdayorders.png)
 
-3. Routing Analysis
+3. **Routing Analysis**
 
 ![Routing Analysis](images/uservenuredistance.png)
 
 
 ### Data Processing
 
+* **Data Deriving**
 
+    - Derive some data fron existing columns such as date, hour, weekday from TIMESTAMP
 
+* **Data Preparation for Modelling**
 
+    - Group data based on date and hour as we are doing hourly prediction, major point here, is for all dates we are not having all hours, like orders are placed between 4am(4 hr) to 10pm(22 hr). So imputed those hours for particular dates.
 
+    - For univariate analysis, one new column called "no_of_orders" was created and whole foecasting model is based on that single columm.
 
+    - For multivariate analysis new column is also used along with weather data.
 
-### Modelling :rocket:
+---
+
+## Modelling :rocket:
 
 I have choosen LSTM for building forecasting model for predicting the no. of orders in next hour...
 
-##### Reason of choosing LSTMN
+### Reason of choosing LSTMN
 
 - We are working on timeseries data and in that case we need to keep useful information from previous data and LSTMN has a memory cell which helps in keeping past information also.
 
@@ -65,7 +74,7 @@ I have choosen LSTM for building forecasting model for predicting the no. of ord
 
 - Features for multivariate model -> No. of orders, Weather data(Wind, Precipitation, Cloud Coverage, Temperature) as the no. of orders may depend upon the weather and route[I didnt take into consideration..but can be taken]
 
-##### Evaluation
+### Evaluation :memo:
 
 This the output from the two models -:
 
@@ -81,8 +90,9 @@ This the output from the two models -:
 
 ![Loss functio](images/loss_multivariate.png)
 
+-----
 
-### Further development
+## Further development
 
 I have trained two models but seems like univariate is outperforming as the validation loss is better than training loss.
 
@@ -92,12 +102,26 @@ If more time will be there these things could be done -:
     - Different model architecture should be tried and thier metrics scores
     - Due to less data, not able to test out on different whole dataset as in the current model, information leakage happened.
 
+------
 
+## Working with files
 
-### Working with files
+* **[Analysis.ipynb](Analysis.ipynb)** - *It contains all analysis, with whole 2 models*
+
+* **[utility.py](utility.py)** - *It contains utility functions like creating a dataset, splitting train and test set etc.*
+
+* **[data_processing.py](data_processing.py)** - *It contains all the preprocessing which was mentioned [here](#data-processing)*
+
+* **[univariate_model.py](univariate_model.py)** - *It is data tranform for univariate analysis and model building and plotting the graph*
+
+* **[multivariate_model.py](multivariate_model.py)** - *It is data tranform for multivariate analysis and model building and plotting the graph*
+
+### **How to execute the files/code**
+
+    - One is directly go through/run the python notebook- analysis.ipynb.
+
+    - Else run main.py use the code as per choice for univariate and multivariate model
 
 
 ---
 
-## Your background and Wolt
-After the practical work, let's discuss what you have learned and what your ambitions are. Write a bit about the problems you like to work with. Have you written your thesis or a larger piece of coursework about something that you would see beneficial for Wolt? If you already have work history, are there some things that you would like to try here? Based on your knowledge about us, are there some problems you would like to help us solve? Do you have some relevant, interesting minors or side projects? We are always interested in enthusiastic people with fresh ideas, and this could be the opportunity to put something you recently learned into use!
