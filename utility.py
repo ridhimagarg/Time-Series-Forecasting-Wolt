@@ -6,11 +6,20 @@ import geopy.distance as gd
 
 
 def calculate_dist_user_venue(coord1, coord2):
+
+    '''
+    Calculating the distance between user and venue location
+    '''
+
     distance_geopy = gd.distance(coord1, coord2).km
     return distance_geopy
 
 
 def fill_all_hour_data(data, list_dates, ismultivariate=False):
+
+    '''
+    Processing the data, filling the all hour data
+    '''
 
     if ismultivariate:
 

@@ -26,6 +26,20 @@ scalers={}
 
 def transform_data(data):
 
+    '''
+    Preprocessed data is transformed into the form wuch that it is used by model.
+    Minmax scaling, training test split.
+
+    Input
+    -----
+    data: preprocessed data
+
+    Output
+    -----
+    transformed data, xtrain, ytrain, xtest, ytest
+
+    '''
+
     df2 = data[["date","hour","CLOUD_COVERAGE","TEMPERATURE","WIND_SPEED","PRECIPITATION"]]
     df2["no_of_orders"] = 1
 
@@ -63,6 +77,12 @@ def transform_data(data):
 
 def model_structure(X_train, y_train, X_test, ytest):
 
+
+    '''
+    Defining the model architecture
+    
+    '''
+
     model=Sequential()
     model.add(LSTM(50,return_sequences=True,input_shape=(X_train.shape[1], X_train.shape[2])))
     model.add(LSTM(50,return_sequences=True))
@@ -88,7 +108,10 @@ def model_structure(X_train, y_train, X_test, ytest):
 
 def plot_output(multivariate_data, train_predict, test_predict):
 
-
+    '''
+    Plotting the evaluation and the results
+    
+    '''
 
     plt.figure(figsize=(30,10))
     look_back=10

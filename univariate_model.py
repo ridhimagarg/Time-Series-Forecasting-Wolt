@@ -26,6 +26,20 @@ scaler=MinMaxScaler(feature_range=(0,1))
 
 def transform_data(data):
 
+    '''
+    Preprocessed data is transformed into the form wuch that it is used by model.
+    Minmax scaling, training test split.
+
+    Input
+    -----
+    data: preprocessed data
+
+    Output
+    -----
+    transformed data, xtrain, ytrain, xtest, ytest
+
+    '''
+
     df1 = data[["date","hour"]]
     df1["no_of_orders"] = 1
     list_dates = df1.date.unique()
@@ -53,8 +67,13 @@ def transform_data(data):
 
     return df_hourly_orders, X_train, y_train, X_test, ytest
 
+
 def model_structure(X_train, y_train, X_test, ytest):
 
+    '''
+    Defining the model architecture
+    
+    '''
 
     ## model building
     model=Sequential()
@@ -81,7 +100,10 @@ def model_structure(X_train, y_train, X_test, ytest):
 
 def plot_output(df_hourly_orders, train_predict, test_predict):
 
-
+    '''
+    Plotting the evaluation and the results
+    
+    '''
 
     plt.figure(figsize=(30,10))
     look_back=10
