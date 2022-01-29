@@ -45,6 +45,10 @@ Here are same basic insights of data -:
 
 ![Routing Analysis](images/uservenuredistance.png)
 
+4. **Multivariate Analysis**
+
+![Multivariate Analysis](images/multivariate_pattern.png)
+
 
 ### Data Processing
 
