@@ -1,6 +1,4 @@
-# Data Science Summer Intern assignment 2022
-
-**Assignment for candidates**
+# Time Series Analysis and Forecasting for food delivery orders
 
 ## Table of Contents
 
